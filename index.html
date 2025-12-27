@@ -55,12 +55,16 @@ body{
   <div class="btn secondary" onclick="visit()">LIHAT PRODUK REKOMENDASI</div>
 </div>
 
+  <div class="small">👥 Pengunjung: <span id="visitCount">0</span> orang</div>
+<div class="small">⬇️ Download: <span id="downloadCount">0</span> kali</div>
+  
 <div class="small">
 ⚠️ Tips Keamanan:<br>
 Kami tidak pernah meminta OTP, PIN, kata sandi, atau kode verifikasi apa pun.<br>
 Jangan pernah membagikan data pribadi Anda di situs yang tidak Anda kenal.<br>
 Pastikan alamat website sesuai dengan tujuan Anda.
 </div>
+</div>   <!-- TUTUP BOX -->
 
 <script>
 const shopee = "https://s.shopee.co.id/1BFakhu09c";
@@ -88,12 +92,29 @@ function visit(){
   window.open(shopee,"_blank");
 }
 function download(){
-  window.open(shopee,"_blank");     // Shopee dulu
+  countDownload();                 // hitung download
+  window.open(shopee,"_blank");
   setTimeout(()=>{
-     window.location.href = file;  // lalu file
+     window.location.href = file;
   },1200);
 }
 </script>
 
+  <script src="https://api.countapi.xyz/hit/linkqita.download-engine/visits?callback=visits"></script>
+<script src="https://api.countapi.xyz/get/linkqita.download-engine/download?callback=dl"></script>
+
+<script>
+function visits(res){
+ document.getElementById("visitCount").innerText = res.value;
+}
+function dl(res){
+ document.getElementById("downloadCount").innerText = res.value;
+}
+function countDownload(){
+ fetch("https://api.countapi.xyz/hit/USERNAME.NAMAREPO/download");
+}
+</script>
+
+  
 </body>
 </html>
