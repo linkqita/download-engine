@@ -101,8 +101,8 @@ function download(){
 }
 </script>
 
-  <script src="https://api.countapi.xyz/hit/linkqita.download-engine/visits?callback=visits"></script>
-<script src="https://api.countapi.xyz/get/linkqita.download-engine/download?callback=dl"></script>
+  <script src="https://api.countapi.xyz/hit/linkqita_downloadengine/visits?callback=visits"></script>
+<script src="https://api.countapi.xyz/get/linkqita_downloadengine/download?callback=dl"></script>
 
 <script>
 function visits(res){
@@ -112,7 +112,7 @@ function dl(res){
  document.getElementById("downloadCount").innerText = res.value;
 }
 function countDownload(){
- fetch("https://api.countapi.xyz/hit/linkqita.download-engine/download");
+ fetch("https://api.countapi.xyz/hit/linkqita_downloadengine/download");
 }
 </script>
 
