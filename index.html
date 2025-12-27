@@ -93,7 +93,7 @@ function visit(){
   window.open(shopee,"_blank");
 }
 function download(){
-  countDownloadLocal();             // ⬅️ hitung lokal
+  countDownloadGlobal();               // ⬅️ ganti ke global
   window.open(shopee,"_blank");
   setTimeout(()=>{
      window.location.href = file;
@@ -115,23 +115,30 @@ function countDownload(){
  fetch("https://api.countapi.xyz/hit/linkqita_downloadengine/download");
 }
 </script>
-<script>
-// === VISITOR COUNTER (LOCAL) ===
-(function(){
-  const key = "visit_count";
-  let v = parseInt(localStorage.getItem(key) || "0", 10);
-  v++;
-  localStorage.setItem(key, v);
-  document.getElementById("visitCount").innerText = v;
-})();
 
-// === DOWNLOAD COUNTER (LOCAL) ===
-function countDownloadLocal(){
-  const key = "download_count";
-  let d = parseInt(localStorage.getItem(key) || "0", 10);
-  d++;
-  localStorage.setItem(key, d);
-  document.getElementById("downloadCount").innerText = d;
+<script>
+const API = "https://script.google.com/macros/s/AKfycbxokIcAUjpN3RGA4aY1hJ_qlrQk9X0T994eWMAuqzvpXtHEC8bElIID6Jarg82Djq8F/exec";   // dari Apps Script
+const PAGE_ID = "download-engine";     // samakan dengan nama repo kamu
+
+// Hitung visit saat halaman dibuka
+fetch(`${API}?page=${PAGE_ID}&action=visit`)
+  .then(r=>r.json())
+  .then(j=>{
+    if(j.ok){
+      document.getElementById("visitCount").innerText = j.visits;
+      document.getElementById("downloadCount").innerText = j.downloads;
+    }
+  });
+
+// Hitung download saat klik
+function countDownloadGlobal(){
+  fetch(`${API}?page=${PAGE_ID}&action=download`)
+    .then(r=>r.json())
+    .then(j=>{
+      if(j.ok){
+        document.getElementById("downloadCount").innerText = j.downloads;
+      }
+    });
 }
 </script>
 
