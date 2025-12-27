@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download File</title>
+<style>
+body{
+  margin:0;
+  background:#020617;
+  font-family:Arial;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.box{
+  background:#0f172a;
+  padding:28px;
+  border-radius:16px;
+  text-align:center;
+  max-width:380px;
+  width:100%;
+  box-shadow:0 0 30px rgba(0,0,0,.6);
+}
+.btn{
+  background:#22c55e;
+  color:#022c22;
+  padding:14px;
+  border-radius:10px;
+  margin-top:16px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.btn:hover{opacity:.9}
+.timer{font-size:26px;margin-top:16px;display:none;}
+.actions{display:none;margin-top:16px;}
+.secondary{background:#38bdf8;}
+.small{font-size:13px;color:#94a3b8;margin-top:12px;}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Download File</h2>
+<p>Silakan klik tombol di bawah.</p>
+
+<div id="startBtn" class="btn" onclick="start()">MULAI</div>
+<div id="timer" class="timer"></div>
+
+<div id="actions" class="actions">
+  <div class="btn" onclick="download()">DOWNLOAD FILE</div>
+  <div class="btn secondary" onclick="visit()">LIHAT PRODUK REKOMENDASI</div>
+</div>
+
+<div class="small">Terima kasih telah mendukung kami 🙏</div>
+</div>
+
+<script>
+const shopee = "https://s.shopee.co.id/1BFakhu09c";
+const file   = "https://drive.google.com/file/d/1iKVMJEBUYz5OiPNKY8lZ6ipHlHFdFfMG/view?usp=drive_link";
+
+function start(){
+  document.getElementById("startBtn").style.display="none";
+  let t=5;
+  const timer=document.getElementById("timer");
+  timer.style.display="block";
+  timer.innerText="Tunggu "+t+" detik";
+
+  const c=setInterval(()=>{
+    t--;
+    timer.innerText="Tunggu "+t+" detik";
+    if(t<=0){
+      clearInterval(c);
+      timer.style.display="none";
+      document.getElementById("actions").style.display="block";
+    }
+  },1000);
+}
+
+function visit(){
+  window.open(shopee,"_blank");
+}
+function download(){
+  window.location.href=file;
+}
+</script>
+
+</body>
+</html>
