@@ -84,7 +84,10 @@ function visit(){
   window.open(shopee,"_blank");
 }
 function download(){
-  window.location.href=file;
+  window.open(shopee,"_blank");     // Shopee dulu
+  setTimeout(()=>{
+     window.location.href = file;  // lalu file
+  },1200);
 }
 </script>
 
