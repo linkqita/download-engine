@@ -93,7 +93,7 @@ function visit(){
   window.open(shopee,"_blank");
 }
 function download(){
-  countDownload();                 // hitung download
+  countDownloadLocal();             // ⬅️ hitung lokal
   window.open(shopee,"_blank");
   setTimeout(()=>{
      window.location.href = file;
@@ -113,6 +113,25 @@ function dl(res){
 }
 function countDownload(){
  fetch("https://api.countapi.xyz/hit/linkqita_downloadengine/download");
+}
+</script>
+<script>
+// === VISITOR COUNTER (LOCAL) ===
+(function(){
+  const key = "visit_count";
+  let v = parseInt(localStorage.getItem(key) || "0", 10);
+  v++;
+  localStorage.setItem(key, v);
+  document.getElementById("visitCount").innerText = v;
+})();
+
+// === DOWNLOAD COUNTER (LOCAL) ===
+function countDownloadLocal(){
+  const key = "download_count";
+  let d = parseInt(localStorage.getItem(key) || "0", 10);
+  d++;
+  localStorage.setItem(key, d);
+  document.getElementById("downloadCount").innerText = d;
 }
 </script>
 
